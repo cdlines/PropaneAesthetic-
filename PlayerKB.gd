@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-const WALK_SPEED = 200
+const SPEED = 400
+const EASING = 20
 
 var velocity = Vector2()
 
@@ -18,18 +19,41 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
+func _accelerate_and_clamp(is_x, boundary):
+	if(is_x):
+		if(boundary > velocity.x):
+			velocity.x += EASING
+			if(velocity.x > boundary):
+				velocity.x = boundary
+		else:
+			velocity.x -= EASING
+			if(velocity.x < boundary):
+				velocity.x = boundary
+	else:
+		if(boundary > velocity.y):
+			velocity.y += EASING
+			if(velocity.y > boundary):
+				velocity.y = boundary
+		else:
+			velocity.y -= EASING
+			if(velocity.y < boundary):
+				velocity.y = boundary
+
 func _physics_process(delta):
 
-    if Input.is_action_pressed("ui_left"):
-        velocity.x = -WALK_SPEED
-    elif Input.is_action_pressed("ui_right"):
-        velocity.x =  WALK_SPEED
-    else:
-        velocity.x = 0
-    if Input.is_action_pressed("ui_up"):
-        velocity.y = -WALK_SPEED
-    elif Input.is_action_pressed("ui_down"):
-        velocity.y =  WALK_SPEED
-    else:
-        velocity.y = 0
-    move_and_slide(velocity, Vector2(0, -1))
+	if Input.is_action_pressed("ui_left"):
+		_accelerate_and_clamp(true, -SPEED)
+	elif Input.is_action_pressed("ui_right"):
+		_accelerate_and_clamp(true, SPEED)
+	else:
+		_accelerate_and_clamp(true, 0) 
+	
+	if Input.is_action_pressed("ui_up"):
+		_accelerate_and_clamp(false, -SPEED)
+	elif Input.is_action_pressed("ui_down"):
+		_accelerate_and_clamp(false, SPEED)
+	else:
+		_accelerate_and_clamp(false, 0)
+	
+	move_local_x(delta*velocity.x)
+	move_local_y(delta*velocity.y)

@@ -9,6 +9,7 @@ var radius = 0
 var angle = 0
 var origin = Vector2()
 var power = 0
+var color = "Yellow"
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -44,4 +45,8 @@ func set_power(power):
 	
 func hit(hit_object):
 	if hit_object.get_name() == "PlayerArea2D":
-		call_deferred("queue_free")
+		if hit_object.get_parent().get_color() != color:
+			call_deferred("queue_free")
+			
+func get_color():
+	return color

@@ -8,6 +8,7 @@ var health = 100
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
+var color = "Yellow"
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -64,5 +65,10 @@ func _physics_process(delta):
 func hit(hit_object):
 	print(hit_object.get_name())
 	if hit_object.get_name() == "BulletArea2D":
-		health -= hit_object.get_parent().power
-		print(health)
+		if hit_object.get_parent().get_color() != color:
+			health -= hit_object.get_parent().power
+			print(health)
+		
+		
+func get_color():
+	return self.color

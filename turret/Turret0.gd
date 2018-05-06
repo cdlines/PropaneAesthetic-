@@ -8,6 +8,7 @@ var WIDTH = ProjectSettings.get_setting("display/window/size/width")
 var HEIGHT = ProjectSettings.get_setting("display/window/size/height")
 const PADDING = 100
 const SPEED = 200
+var color = "Yellow"
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -44,4 +45,9 @@ func _process(delta):
 	
 func hit(hit_object):
 	if hit_object.get_name() == "PlayerArea2D":
-		call_deferred("queue_free")
+		#print(hit_object.get_parent().get_color())
+		if color != hit_object.get_parent().get_color():
+			call_deferred("queue_free")
+
+func get_color():
+	return self.color

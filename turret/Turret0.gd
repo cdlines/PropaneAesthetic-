@@ -8,13 +8,32 @@ var WIDTH = ProjectSettings.get_setting("display/window/size/width")
 var HEIGHT = ProjectSettings.get_setting("display/window/size/height")
 const PADDING = 100
 const SPEED = 200
-var color = "Yellow"
+var color = 0
+var colors = ["Yellow", "Blue", "Red"]
+
+func init(x, y, state, color):
+	position = Vector2(x,y)
+	self.state = state
+	self.color = color
+	_change_sprite();
+	
+func _change_sprite():
+	var c = get_color()
+	if c == "Yellow":
+		$Turret0Sprite0.set_texture(load("res://Unhappy.png"))
+	elif c == "Red":
+		$Turret0Sprite0.set_texture(load("res://Angry.png"))
+	elif c == "Blue":
+		$Turret0Sprite0.set_texture(load("res://Happy.png"))
+	else:
+		print("something went wrong with player color")
+	
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	state = 0
-	position = Vector2(PADDING,PADDING)
+	#state = 0
+	#position = Vector2(PADDING,PADDING)
 	$Turret0Sprite0/Turret0Area2D.connect("area_entered", self, "hit")
 	pass
 
@@ -46,8 +65,8 @@ func _process(delta):
 func hit(hit_object):
 	if hit_object.get_name() == "PlayerArea2D":
 		#print(hit_object.get_parent().get_color())
-		if color != hit_object.get_parent().get_color():
+		if get_color() != hit_object.get_parent().get_color():
 			call_deferred("queue_free")
 
 func get_color():
-	return self.color
+	return self.colors[self.color]

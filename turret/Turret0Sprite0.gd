@@ -24,6 +24,7 @@ func _process(delta):
 	if time == 0:
 		time = TIME
 		var bullet = bullet_resource.instance()
+		bullet.set_color(get_parent().color)
 		bullet.init_origin(global_position)
 		bullet.init_pos(Vector2(1,0).angle_to_point(position),0)
 		bullet.init_vel(0, -5)

@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="PlayerSprite" type="Sprite" index="0"]
+[node name="PlayerSprite" type="Sprite"]
 
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

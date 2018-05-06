@@ -18,6 +18,7 @@ func _ready():
 	health = 100
 	$PlayerArea2D.connect("area_entered", self, "hit")
 	set_process_input(true)
+	set_process(true)
 	pass
 
 func _input(event):
@@ -55,10 +56,13 @@ func _change_sprite():
 	else:
 		print("something went wrong with player color")
 
-#func _process(delta):
+func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
-#	pass
+	if health <= 0:
+		#popup =
+		print("dead - end game") 
+	pass
 
 func _accelerate_and_clamp(is_x, boundary):
 	if(is_x):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Unhappy.png-a665dc7d2b449e5ecbafcb923c724c48.stex"
+path="res://.import/Angry.png-e85bc3ce8f30fb771f00edbeef7bd07c.stex"
 
 [deps]
 
-source_file="res://Unhappy.png"
-source_md5="53be16683182dd2cb87b8ae6657a39d3"
+source_file="res://Angry.png"
+source_md5="1c1203e1ae9e1a76e3f65d24e274b9c6"
 
-dest_files=[ "res://.import/Unhappy.png-a665dc7d2b449e5ecbafcb923c724c48.stex" ]
-dest_md5="b91875cc8f4fce57deb0a0a429a95774"
+dest_files=[ "res://.import/Angry.png-e85bc3ce8f30fb771f00edbeef7bd07c.stex" ]
+dest_md5="c02a4aefb52b728ac3c4127cb0b7957e"
 
 [params]
 

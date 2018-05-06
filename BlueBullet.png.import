@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Unhappy.png-a665dc7d2b449e5ecbafcb923c724c48.stex"
+path="res://.import/BlueBullet.png-0cbae8b48472e1b0df5e234f70dfa655.stex"
 
 [deps]
 
-source_file="res://Unhappy.png"
-source_md5="53be16683182dd2cb87b8ae6657a39d3"
+source_file="res://BlueBullet.png"
+source_md5="28628df8c8f1a878d66af85ce307d4af"
 
-dest_files=[ "res://.import/Unhappy.png-a665dc7d2b449e5ecbafcb923c724c48.stex" ]
-dest_md5="b91875cc8f4fce57deb0a0a429a95774"
+dest_files=[ "res://.import/BlueBullet.png-0cbae8b48472e1b0df5e234f70dfa655.stex" ]
+dest_md5="e546f6d3a2d866ca134cc4b3e74c258a"
 
 [params]
 

@@ -8,7 +8,8 @@ var health = 100
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-var color = "Yellow"
+var color = 1
+var colors = ["Yellow", "Blue", "Red"]
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -16,7 +17,43 @@ func _ready():
 	velocity = Vector2()
 	health = 100
 	$PlayerArea2D.connect("area_entered", self, "hit")
+	set_process_input(true)
 	pass
+
+func _input(event):
+	if event.is_action_pressed("left_click"):
+		#do thing
+		print("left click")
+		_cycle_color("forward")
+	elif event.is_action_pressed("right_click"):
+		print("right click")
+		_cycle_color("backwards")
+	pass
+
+func _cycle_color(direction):
+	if direction == "forward":
+		if color == 2:
+			color = 0
+		else:
+			color += 1
+	elif direction == "backwards":
+		if color == 0:
+			color = 2
+		else: 
+			color -= 1
+	
+	_change_sprite()
+	
+func _change_sprite():
+	var c = get_color()
+	if c == "Yellow":
+		set_texture(load("res://Unhappy.png"))
+	elif c == "Red":
+		set_texture(load("res://Angry.png"))
+	elif c == "Blue":
+		set_texture(load("res://Happy.png"))
+	else:
+		print("something went wrong with player color")
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -65,10 +102,10 @@ func _physics_process(delta):
 func hit(hit_object):
 	print(hit_object.get_name())
 	if hit_object.get_name() == "BulletArea2D":
-		if hit_object.get_parent().get_color() != color:
+		if hit_object.get_parent().get_color() != get_color():
 			health -= hit_object.get_parent().power
 			print(health)
 		
 		
 func get_color():
-	return self.color
+	return self.colors[self.color]
